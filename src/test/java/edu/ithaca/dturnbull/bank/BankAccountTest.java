@@ -27,10 +27,11 @@ class BankAccountTest {
         assertTrue(BankAccount.isEmailValid( "a@b.com"));   // valid email address
         assertFalse( BankAccount.isEmailValid(""));         // empty string
 
-        //Write tests here that fail but can pass when I edit your isEmailValid function 
-        assertFalse(BankAccount.isEmailValid("1234@com")); // No . in address - Invalid partition, test boundary case is for domain (.com, .edu, .org)
-        assertFalse(BankAccount.isEmailValid("@.com")); // @ symbol was at the front of the address - invalid partition, boundary case and equivalence test
-        assertFalse(BankAccount.isEmailValid("hello32@com")); // No . in address - Invalid partition, test boundary case is for domain (.com, .edu, .org)
+        assertFalse(BankAccount.isEmailValid("1234@com"));
+        assertFalse(BankAccount.isEmailValid("@.com"));
+        assertFalse(BankAccount.isEmailValid("hello32@com"));
+
+
 
 
         
