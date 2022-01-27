@@ -28,6 +28,10 @@ class BankAccountTest {
         assertFalse( BankAccount.isEmailValid(""));         // empty string
 
         //Write tests here that fail but can pass when I edit your isEmailValid function 
+        assertFalse(BankAccount.isEmailValid("1234@com"));
+        assertFalse(BankAccount.isEmailValid("@.com"));
+        assertFalse(BankAccount.isEmailValid("hello32@com"));
+
 
         
     }
