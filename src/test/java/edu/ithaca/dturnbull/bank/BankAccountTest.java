@@ -27,11 +27,30 @@ class BankAccountTest {
         assertTrue(BankAccount.isEmailValid( "a@b.com"));   // valid email address
         assertFalse( BankAccount.isEmailValid(""));         // empty string
 
-        assertFalse(BankAccount.isEmailValid("1234@com"));
-        assertFalse(BankAccount.isEmailValid("@.com"));
-        assertFalse(BankAccount.isEmailValid("hello32@com"));
-        //Test comment 
+        assertFalse(BankAccount.isEmailValid("1234@com"));//Domain -- no period in the domain
+        assertFalse(BankAccount.isEmailValid("@.com")); //Prefix -- no prefix only domain
+        assertFalse(BankAccount.isEmailValid("hello32@com"));  //Domain -- no period in the domain
+        
+        //PreFix Tests
+        assertTrue(BankAccount.isEmailValid("amg-crv@mail.com")); //Valid email
+        assertFalse(BankAccount.isEmailValid("amg-@mail.com")); //The - is not valid in the prefix unless it connects two prefixes
+        assertFalse(BankAccount.isEmailValid("bmw..@mail.com")); //Prefix may not contain two or more periods
+        assertFalse(BankAccount.isEmailValid(".maz3@gmail.com")); //Cant start with period
+        assertFalse(BankAccount.isEmailValid("amg#crv@mail.com")); //Cant have a # in prefix
+        assertFalse(BankAccount.isEmailValid("...@mail.com")); //No words in prefix
+        
+        //Domain tests
+        assertTrue(BankAccount.isEmailValid("hello@mail.com")); //Valid email
+        assertFalse(BankAccount.isEmailValid("hello@mailcom")); //No period in domain
+        assertFalse(BankAccount.isEmailValid("hello@mail.c")); //Needs 2 or more letters in the domain
+        assertFalse(BankAccount.isEmailValid("helloAtmail.com")); //Domain needs an @
+        assertFalse(BankAccount.isEmailValid("hello@mail")); //Needs a domain
+        assertFalse(BankAccount.isEmailValid("hello@mail..com")); //Cant contain 2 periods in domain
 
+        //Middle
+        assertTrue(BankAccount.isEmailValid("muhta%@mail.com")); //Valid email
+        assertFalse(BankAccount.isEmailValid("@mail.com")); //No prefix
+        assertFalse(BankAccount.isEmailValid("hello@muhta@mail.com")); //Prefix cant contain @
 
         
     }
