@@ -67,10 +67,11 @@ class BankAccountTest {
         assertFalse(BankAccount.isEmailValid("hello@mail")); //Needs a domain
         assertFalse(BankAccount.isEmailValid("hello@mail..com")); //Cant contain 2 periods in domain
 
-        //Middle
+        //Middle tests
         assertTrue(BankAccount.isEmailValid("muhta%@mail.com")); //Valid email
         assertFalse(BankAccount.isEmailValid("@mail.com")); //No prefix
         assertFalse(BankAccount.isEmailValid("hello@muhta@mail.com")); //Prefix cant contain @
+
 
         
     }
