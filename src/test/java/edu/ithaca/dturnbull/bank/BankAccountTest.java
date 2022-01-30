@@ -87,7 +87,7 @@ class BankAccountTest {
 
         assertFalse(BankAccount.isAmountValid(200.0405));//More than 2 decimal places -- border case
 
-        assertFalse(BankAccount.isAmountValid(100));//Doesnt have any decimal points -- border case
+        assertTrue(BankAccount.isAmountValid(100));//Doesnt have any decimal points -- border case
 
         assertFalse(BankAccount.isAmountValid(-0.450));//Is negative -- border case
 
