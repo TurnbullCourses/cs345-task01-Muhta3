@@ -51,4 +51,15 @@ public class BankAccount {
             return true;
         }
     }
+
+    public static boolean isAmountValid(double balance){
+        String balanceString = String.valueOf(balance);
+        String[] splitBalanceString = balanceString.split(".");
+        if(balance < 0 || splitBalanceString[1].length()>2 ){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 }
