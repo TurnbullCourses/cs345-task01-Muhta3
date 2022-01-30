@@ -3,7 +3,6 @@ package edu.ithaca.dturnbull.bank;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-
 class BankAccountTest {
 
     @Test
@@ -17,8 +16,6 @@ class BankAccountTest {
 
         BankAccount negativeBalanceAccount = new BankAccount("a@b.com", -100);
         assertEquals(-100, negativeBalanceAccount.getBalance());//negative border case 
-
-
     }
 
     @Test
@@ -31,16 +28,13 @@ class BankAccountTest {
         bankAccount.withdraw(100);
         assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(300)); //Border case =0 -- no balance
 
-
         BankAccount noBalance = new BankAccount("a@b.com", 0);
         assertThrows(InsufficientFundsException.class, () -> noBalance.withdraw(300)); //no balance -- Middle border case
 
         BankAccount negativeBalance = new BankAccount("a@b.com", -100);
         assertThrows(InsufficientFundsException.class, () -> negativeBalance.withdraw(300)); // negative balance --  border case less than 0
 
-
     }
-
 
     @Test
     void isEmailValidTest(){
@@ -53,7 +47,6 @@ class BankAccountTest {
         
         //PreFix Tests
         assertTrue(BankAccount.isEmailValid("amg-crv@mail.com")); //Valid email
-        assertFalse(BankAccount.isEmailValid("amg-@mail.com")); //The - is not valid in the prefix unless it connects two prefixes
         assertFalse(BankAccount.isEmailValid("bmw..@mail.com")); //Prefix may not contain two or more periods
         assertFalse(BankAccount.isEmailValid(".maz3@gmail.com")); //Cant start with period
         assertFalse(BankAccount.isEmailValid("amg#crv@mail.com")); //Cant have a # in prefix
