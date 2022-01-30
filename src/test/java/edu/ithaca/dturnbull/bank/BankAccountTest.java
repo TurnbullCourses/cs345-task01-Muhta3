@@ -88,20 +88,15 @@ class BankAccountTest {
 
     @Test
     void isAmountValid(){
-        BankAccount bankAccount = new BankAccount("a@b.com", 150.01);
-        assertEquals(true, bankAccount.getBalance()); //Valid Amount --- Anything over $0 -- 2 decimal points
+        assertTrue(BankAccount.isAmountValid(150.01));//Valid Amount --- Anything over $0 -- 2 decimal points
 
-        BankAccount bankAccount2 = new BankAccount("a@b.com", -100.00);
-        assertEquals(false, bankAccount2.getBalance()); //Negative number --border case
+        assertFalse(BankAccount.isAmountValid(-100.00)); //Negative number --border case
 
-        BankAccount bankAccount3 = new BankAccount("a@b.com", 200.0405);
-        assertEquals(false, bankAccount3.getBalance()); //More than 2 decimal places -- border case
+        assertFalse(BankAccount.isAmountValid(200.0405));//More than 2 decimal places -- border case
 
-        BankAccount bankAccount4 = new BankAccount("a@b.com", 100);
-        assertEquals(false, bankAccount4.getBalance()); //Doesnt have any decimal points
+        assertFalse(BankAccount.isAmountValid(100));//Doesnt have any decimal points -- border case
 
-        BankAccount bankAccount5 = new BankAccount("a@b.com", -0.450);
-        assertEquals(false, bankAccount5.getBalance());
+        assertFalse(BankAccount.isAmountValid(-0.450));//Is negative -- border case
 
     }
 
