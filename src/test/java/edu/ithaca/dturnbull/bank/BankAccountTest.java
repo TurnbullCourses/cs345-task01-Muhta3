@@ -19,8 +19,20 @@ class BankAccountTest {
         bankAccount.withdraw(100);
 
         assertEquals(100, bankAccount.getBalance(), 0.001);
-        assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(300));
+        assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(300)); // Amount greater than balance -- Greater than border case
+        bankAccount.withdraw(100);
+        assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(300)); //Border case =0 -- no balance
+
+
+        BankAccount noBalance = new BankAccount("a@b.com", 0);
+        assertThrows(InsufficientFundsException.class, () -> noBalance.withdraw(300)); //no balance -- Middle border case
+
+        BankAccount negativeBalance = new BankAccount("a@b.com", -100);
+        assertThrows(InsufficientFundsException.class, () -> negativeBalance.withdraw(300)); // negative balance --  border case less than 0
+
+
     }
+
 
     @Test
     void isEmailValidTest(){
