@@ -79,4 +79,23 @@ class BankAccountTest {
         assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));
     }
 
+    @Test
+    void isAmountValid(){
+        BankAccount bankAccount = new BankAccount("a@b.com", 150.01);
+        assertEquals(true, bankAccount.getBalance()); //Valid Amount --- Anything over $0 -- 2 decimal points
+
+        BankAccount bankAccount2 = new BankAccount("a@b.com", -100.00);
+        assertEquals(false, bankAccount2.getBalance()); //Negative number --border case
+
+        BankAccount bankAccount3 = new BankAccount("a@b.com", 200.0405);
+        assertEquals(false, bankAccount3.getBalance()); //More than 2 decimal places -- border case
+
+        BankAccount bankAccount4 = new BankAccount("a@b.com", 100);
+        assertEquals(false, bankAccount4.getBalance()); //Doesnt have any decimal points
+
+        BankAccount bankAccount5 = new BankAccount("a@b.com", -0.450);
+        assertEquals(false, bankAccount5.getBalance());
+
+    }
+
 }
