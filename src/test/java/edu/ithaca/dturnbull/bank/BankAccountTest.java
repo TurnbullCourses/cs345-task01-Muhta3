@@ -10,7 +10,15 @@ class BankAccountTest {
     void getBalanceTest() {
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
 
-        assertEquals(200, bankAccount.getBalance(), 0.01);
+        assertEquals(200, bankAccount.getBalance(), 0.001);//upper border case --- positive
+
+        BankAccount noBalanceAccount = new BankAccount("a@b.com", 0);
+        assertEquals(0, noBalanceAccount.getBalance());//middle border case -- zero balance
+
+        BankAccount negativeBalanceAccount = new BankAccount("a@b.com", -100);
+        assertEquals(-100, negativeBalanceAccount.getBalance());//negative border case 
+
+
     }
 
     @Test
