@@ -110,4 +110,16 @@ class BankAccountTest {
 
     }
 
+    @Test
+    void depositTest(){
+        BankAccount bankAccount = new BankAccount("a@b.com", 0);
+        bankAccount.deposit(100);
+
+        assertEquals(100, bankAccount.getBalance());//Valid deposit
+
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(-20) );//negative deposit
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(20.456));//too many significant digits
+
+    }
+
 }
