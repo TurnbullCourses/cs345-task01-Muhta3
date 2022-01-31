@@ -86,9 +86,9 @@ class BankAccountTest {
         //check for exception thrown correctly
         assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));
 
-        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", -100));
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", -100)); //Testing for negative balance
 
-        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", 100.489));
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", 100.489)); //Testing for too many significant digits
 
 
         
