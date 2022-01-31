@@ -32,13 +32,13 @@ class BankAccountTest {
         assertThrows(InsufficientFundsException.class, () -> noBalance.withdraw(300)); //no balance -- Middle border case
 
         BankAccount negativeBalance = new BankAccount("a@b.com", -100);
-        assertThrows(InsufficientFundsException.class, () -> negativeBalance.withdraw(300)); // negative balance --  border case less than 0
+        assertThrows(IllegalArgumentException.class, () -> negativeBalance.withdraw(300)); // negative balance --  border case less than 0
 
         BankAccount bankAccount2 = new BankAccount("a@b.com", 100);
         assertThrows(InsufficientFundsException.class, () -> bankAccount2.withdraw(300)); //Testing for withdrawing more than amount
 
         BankAccount bankAccount3 = new BankAccount("a@b.com", 300.543); //Testing for too many significant digits.
-        assertThrows(InsufficientFundsException.class, () -> bankAccount3.withdraw(300));
+        assertThrows(IllegalArgumentException.class, () -> bankAccount3.withdraw(300));
 
         
 
