@@ -108,6 +108,13 @@ public class BankAccount {
     }
 
     public void transfer(double amount, BankAccount otherAccount)throws InsufficientFundsException{
-        
+        if(isAmountValid(amount) && amount<balance){
+            balance-=amount;
+            otherAccount.balance+=amount;
+        }
+        else{
+            throw new InsufficientFundsException("Transfer amount more than balance or amount has too many significant deciamls");
+
+        }
     }
 }
