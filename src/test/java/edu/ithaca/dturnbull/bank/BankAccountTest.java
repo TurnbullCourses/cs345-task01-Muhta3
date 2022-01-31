@@ -34,6 +34,14 @@ class BankAccountTest {
         BankAccount negativeBalance = new BankAccount("a@b.com", -100);
         assertThrows(InsufficientFundsException.class, () -> negativeBalance.withdraw(300)); // negative balance --  border case less than 0
 
+        BankAccount bankAccount2 = new BankAccount("a@b.com", 100);
+        assertThrows(InsufficientFundsException.class, () -> bankAccount2.withdraw(300)); //Testing for withdrawing more than amount
+
+        BankAccount bankAccount3 = new BankAccount("a@b.com", 300.543); //Testing for too many significant digits.
+        assertThrows(InsufficientFundsException.class, () -> bankAccount3.withdraw(300));
+
+        
+
     }
 
     @Test
@@ -77,6 +85,16 @@ class BankAccountTest {
         assertEquals(200, bankAccount.getBalance(), 0.001);
         //check for exception thrown correctly
         assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));
+
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", -100));
+
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", 100.489));
+
+
+        
+
+        
+
     }
 
     @Test
