@@ -9,12 +9,18 @@ public class BankAccount {
      * @throws IllegalArgumentException if email is invalid
      */
     public BankAccount(String email, double startingBalance){
-        if (isEmailValid(email) && isAmountValid(startingBalance)){
+        if (isEmailValid(email) ){
             this.email = email;
-            this.balance = startingBalance;
         }
         else {
             throw new IllegalArgumentException("Email address: " + email + " is invalid, cannot create account");
+        }
+
+        if(isAmountValid(startingBalance)){
+            this.balance = startingBalance;
+        }
+        else{
+            throw new IllegalArgumentException("Invalid balance");
         }
     }
 
@@ -48,7 +54,7 @@ public class BankAccount {
 
         String[] emailAddress = email.split("@"); //seperate prefix and domain
 
-        if ((emailAddress[0].indexOf(".") == emailAddress[0].length()-1)) { 
+        if ((emailAddress[0].indexOf(".") == emailAddress[0].length()-1) || email.equals("")) { 
             return false;
         }
         else if (email.indexOf('.') == -1 || email.indexOf('@') == -1){ 
