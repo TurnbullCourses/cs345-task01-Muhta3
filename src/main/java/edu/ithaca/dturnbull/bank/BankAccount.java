@@ -106,4 +106,8 @@ public class BankAccount {
 
         
     }
+
+    public void transfer(double amount, BankAccount otherAccount)throws InsufficientFundsException{
+        
+    }
 }
