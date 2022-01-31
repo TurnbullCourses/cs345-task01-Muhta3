@@ -123,6 +123,22 @@ class BankAccountTest {
 
     }
 
-    
+    @Test
+    void transferTest()throws InsufficientFundsException{
+        BankAccount bankAccount = new BankAccount("a@b.com", 250);
+        BankAccount otherBankAccount = new BankAccount("b@c.com", 300);
+
+        bankAccount.transfer(100, otherBankAccount);
+
+        assertEquals(150, bankAccount.getBalance());
+        assertEquals(400, otherBankAccount.getBalance());
+
+        assertThrows(InsufficientFundsException.class, ()-> bankAccount.transfer(1000, otherBankAccount)); //Cant transfer more than balance
+        assertThrows(InsufficientFundsException.class, ()-> bankAccount.transfer(-100, otherBankAccount));//Cant transfer negative balance
+        assertThrows(InsufficientFundsException.class, ()-> bankAccount.transfer(100.5432, otherBankAccount));//Cant transfer because too many significant decimals
+
+    }
+
+
 
 }
