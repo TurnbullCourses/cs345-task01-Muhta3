@@ -95,7 +95,15 @@ public class BankAccount {
         }
     }
 
-    public void deposit(double amount){
+    public void deposit(double amount)throws InsufficientFundsException{
+        if(!isAmountValid(amount)){
+            throw new InsufficientFundsException("Deposit amount cant be negative or have more than 2 significant digits.");
+        }
+        else{
+            balance+=amount;
+        }
+
+
         
     }
 }

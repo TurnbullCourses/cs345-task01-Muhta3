@@ -111,15 +111,18 @@ class BankAccountTest {
     }
 
     @Test
-    void depositTest(){
+    void depositTest()throws InsufficientFundsException{
         BankAccount bankAccount = new BankAccount("a@b.com", 0);
+
         bankAccount.deposit(100);
 
         assertEquals(100, bankAccount.getBalance());//Valid deposit
 
-        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(-20) );//negative deposit
-        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(20.456));//too many significant digits
+        assertThrows(InsufficientFundsException.class, ()-> bankAccount.deposit(-20) );//negative deposit
+        assertThrows(InsufficientFundsException.class, ()-> bankAccount.deposit(20.456));//too many significant digits
 
     }
+
+    
 
 }
