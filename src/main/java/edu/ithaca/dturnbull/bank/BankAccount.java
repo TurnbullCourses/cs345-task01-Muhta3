@@ -95,13 +95,13 @@ public class BankAccount {
      * @return returns a boolean
      */
     public static boolean isAmountValid(double balance){
-        String balanceString = Double.toString(balance);
-        String[] splitBalanceString = balanceString.split("\\.");
+        String balanceString = Double.toString(balance); //Turns double to a string
+        String[] splitBalanceString = balanceString.split("\\."); //splits it to an array, splitting by period
         if(balance < 0 ){   
             return false;
         }
         if(balanceString.contains(".")){
-            if(splitBalanceString[1].length()>2){
+            if(splitBalanceString[1].length()>2){ //looks after the period or domain to see if its more than 2 letters.
                 return false;
             }
             else{
