@@ -13,6 +13,8 @@ class BankAccountTest {
 
         BankAccount noBalanceAccount = new BankAccount("a@b.com", 0);
         assertEquals(0, noBalanceAccount.getBalance());//middle border case -- zero balance
+        //BankAccount negativeAccount = new BankAccount("a@b.com", -100); Can never have negative balance
+        //assertEquals(IllegalArgumentException.class, negativeAccount.getBalance()); 
 
 
     }
