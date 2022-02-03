@@ -7,6 +7,7 @@ public class BankAccount {
 
     /**
      * @throws IllegalArgumentException if email is invalid
+     * checks if amount is valid
      */
     public BankAccount(String email, double startingBalance){
         if (isEmailValid(email) ){
@@ -23,21 +24,30 @@ public class BankAccount {
             throw new IllegalArgumentException("Invalid balance");
         }
     }
-
+    /**
+     * 
+     * @return balance
+     */
     public double getBalance(){
         return balance;
     }
-
+    /***
+     * 
+     * @return email
+     */
     public String getEmail(){
         return email;
     }
 
     /**
      * @post reduces the balance by amount if amount is non-negative and smaller than balance
+     * withdraw nmakes sure a bank account can withdraw properly
+     * Checks amount if greater than balance, too amny aig figs and negative amount.
+     * I reuse isamount valid function
      */
     public void withdraw (double amount) throws InsufficientFundsException{
         if(!isAmountValid(balance) || !isAmountValid(amount)){
-            throw new IllegalArgumentException("Too many significatn digits!");
+            throw new IllegalArgumentException("Too many significant digits!");
         }
         if (amount <= balance){
             balance -= amount;
@@ -49,7 +59,12 @@ public class BankAccount {
 
 
 
-
+    /**
+     * 
+     * @param email Proper email is feb@mail.com 
+     * If email not valid returns false
+     * @return boolean
+     */
     public static boolean isEmailValid(String email){
 
         String[] emailAddress = email.split("@"); //seperate prefix and domain
@@ -73,10 +88,14 @@ public class BankAccount {
             return true;
         }
     }
-
+    /**
+     * 
+     * @param balance starting balance is checked if valid
+     * Not valid if negative balance, too many sig figs
+     * @return returns a boolean
+     */
     public static boolean isAmountValid(double balance){
         String balanceString = Double.toString(balance);
-        System.out.println(balanceString);
         String[] splitBalanceString = balanceString.split("\\.");
         if(balance < 0 ){   
             return false;
@@ -94,7 +113,11 @@ public class BankAccount {
             return true;
         }
     }
-
+    /**
+     * 
+     * @param amount Amount of money to deposit
+     * @throws InsufficientFundsException throws is negative deposit or too many sig figs. 
+     */
     public void deposit(double amount)throws InsufficientFundsException{
         if(!isAmountValid(amount)){
             throw new InsufficientFundsException("Deposit amount cant be negative or have more than 2 significant digits.");
@@ -106,11 +129,18 @@ public class BankAccount {
 
         
     }
+    /**
+     * 
+     * @param amount This is the amount of money wanting to be transferred
+     * @param otherAccount This is another Bank account to transfer the money to.
+     * @throws InsufficientFundsException exception if the amount wanting to send if more than the balance one has in the account, thus cant send more than you have. Also, for too
+     * many significant decimals and negative transfers.
+     */
 
     public void transfer(double amount, BankAccount otherAccount)throws InsufficientFundsException{
         if(isAmountValid(amount) && amount<balance){
             balance-=amount;
-            otherAccount.balance+=amount;
+            otherAccount.balance+=amount; 
         }
         else{
             throw new InsufficientFundsException("Transfer amount more than balance or amount has too many significant deciamls");
